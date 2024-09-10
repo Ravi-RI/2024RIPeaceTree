@@ -1,0 +1,156 @@
+/* General resets for the page */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    height: 100vh;
+    background-color: #f0f8ff;
+    font-family: Arial, sans-serif;
+}
+
+/* Container for the tree and its elements */
+.tree-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tree {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+    border: none;
+}
+
+.leaf {
+    position: absolute;
+    min-width: 80px;
+    padding: 10px;
+    background-color: green;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    transform-origin: center;
+    word-wrap: break-word;
+    z-index: 1; /* Ensure leaves are above background but below other elements */
+}
+
+/* Adjusted sizes for peace symbols */
+.peace-symbol {
+    position: absolute;
+    z-index: 0; /* Keeps peace symbols behind the container */
+    opacity: 0.8;
+    cursor: pointer; /* Makes peace symbols clickable */
+    transition: all 0.5s ease; /* Smooth transition for size changes */
+}
+
+.peace-symbol.small {
+    width: 500px; /* Twice the original small size */
+    height: 500px;
+}
+
+.peace-symbol.medium {
+    width: 200px; /* Twice the original medium size */
+    height: 200px;
+}
+
+.peace-symbol.large {
+    width: 280px; /* Twice the original large size */
+    height: 280px;
+}
+
+.peace-symbol.full {
+    width: 360px; /* Twice the original full size */
+    height: 360px;
+}
+
+/* Style for input and button elements */
+input[type="text"],
+input[type="password"] {
+    margin: 5px; /* Reduced margin */
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: calc(100% - 20px); /* Adjust width to fit within the container with padding */
+}
+
+button {
+    margin: 5px; /* Reduced margin */
+    padding: 8px 12px; /* Adjusted padding */
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: calc(100% - 20px); /* Adjust width to fit within the container with padding */
+}
+
+/* Centered container for image and input elements */
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center vertically */
+    height: 100vh; /* Full viewport height for vertical centering */
+}
+
+#ri-image {
+    width: 25%; /* Quarter the size of its previous size */
+    height: auto;
+    margin-bottom: 10px; /* Space below image */
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column; /* Stack input and button vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+}
+
+.input-container input[type="text"],
+.input-container input[type="password"] {
+    margin-bottom: 10px; /* Space between input and button */
+}
+
+.input-container button {
+    margin-bottom: 0; /* Remove bottom margin for the button */
+}
+
+/* Footer styles */
+.footer {
+    width: 100%;
+    background-color: #f0f8ff;
+    text-align: center;
+    padding: 5px;
+    font-size: 0.5rem; /* Adjust font size to be half the original size */
+}
+
+.footer hr {
+    border: none;
+    height: 1px;
+    background-color: #000;
+    margin-bottom: 5px;
+}

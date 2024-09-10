@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Room Number</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="center-container">
+            <img id="ri-image" src="ri.png" alt="Peace Sign">
+            <div class="input-container">
+                <div class="error" id="errorMsg">Enter your room number between 1 to 30</div>
+                <input type="text" id="roomInput" placeholder="Room Number">
+                <button onclick="submitRoomNumber()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="peaceContainer"></div>
+
+    <audio id="tibetanAudio">
+        <source src="tibetan-bell.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const peaceContainer = document.getElementById('peaceContainer');
+        const tibetanAudio = document.getElementById('tibetanAudio');
+
+        function getRandomSize() {
+            const sizes = ['40px', '60px', '80px', '100px'];
+            return sizes[Math.floor(Math.random() * sizes.length)];
+        }
+
+        function createPeaceSign() {
+            const peaceSign = document.createElement('img');
+            peaceSign.src = 'peace.png';
+            peaceSign.className = 'peace-symbol';
+            peaceSign.style.width = getRandomSize();
+            peaceSign.style.height = peaceSign.style.width;
+            peaceSign.style.position = 'absolute';
+            peaceSign.style.top = `${Math.random() * (window.innerHeight - 100)}px`;
+            peaceSign.style.left = `${Math.random() * (window.innerWidth - 100)}px`;
+            peaceSign.style.zIndex = '1';
+            peaceSign.style.cursor = 'pointer';
+
+            peaceSign.addEventListener('click', () => {
+                tibetanAudio.currentTime = 0;
+                tibetanAudio.play();
+                peaceSign.style.transition = 'all 0.5s ease';
+                peaceSign.style.width = '200px';
+                peaceSign.style.height = '200px';
+                setTimeout(() => {
+                    peaceSign.style.top = `${Math.random() * (window.innerHeight - 100)}px`;
+                    peaceSign.style.left = `${Math.random() * (window.innerWidth - 100)}px`;
+                    peaceSign.style.width = getRandomSize();
+                    peaceSign.style.height = peaceSign.style.width;
+                    createPeaceSign();
+                }, 500);
+            });
+
+            peaceContainer.appendChild(peaceSign);
+        }
+
+        for (let i = 0; i < 10; i++) {
+            createPeaceSign();
+        }
+
+        function submitRoomNumber() {
+            const roomInput = document.getElementById('roomInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (isNaN(roomInput) || roomInput < 1 || roomInput > 30) {
+                errorMsg.style.display = 'block';
+                errorMsg.textContent = 'Enter your room number between 1 to 30';
+            } else {
+                errorMsg.style.display = 'none';
+                localStorage.setItem('roomNumber', roomInput);
+                window.location.href = 'intro.html';
+            }
+        }
+
+        document.getElementById('roomInput').addEventListener('input', function (e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    </script>
+</body>
+</html>
